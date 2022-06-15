@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "853529874659",
+    "project_id": "dope-c450f",
+    "storage_bucket": "dope-c450f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:853529874659:android:704caecdbf9f71364bf5d6",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "853529874659-ulte2la9fqsvhvodtf9o9n45ccigcva6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnuoBFymqBPoTPAuSHd3YUNrtgZPLBvAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "853529874659-ulte2la9fqsvhvodtf9o9n45ccigcva6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
