@@ -73,7 +73,15 @@ class _RegisterViewState extends State<RegisterView> {
                       child: Text("Register")),
                   Container(
                     child: Text(error),
-                  )
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                          '/login/',
+                          (route) => false,
+                        );
+                      },
+                      child: Text('GO back to login'))
                 ]);
               default:
                 return Text("Loading...");
