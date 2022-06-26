@@ -3,6 +3,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/constants/routes.dart';
+import 'package:flutter_application_1/utilities/show_error_dialog.dart';
 
 import '../firebase_options.dart';
 
@@ -61,11 +63,16 @@ class _RegisterViewState extends State<RegisterView> {
                         final email = _email.text;
                         final password = _password.text;
                         try {
-                          final credential = await FirebaseAuth.instance
+                          await FirebaseAuth.instance
                               .createUserWithEmailAndPassword(
-                                  email: email, password: password);
+                            email: email,
+                            password: password,
+                          );
+                          final user = FirebaseAuth.instance.currentUser;
+                          await user?.sendEmailVerification();
+                          Navigator.of(context).pushNamed(verifyemailroute);
                         } on FirebaseAuthException catch (e) {
-                          error = e.code;
+                          showErrorDialog(context, e.code);
                           print(e.code);
                           setState(() {});
                         }
@@ -77,7 +84,7 @@ class _RegisterViewState extends State<RegisterView> {
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pushNamedAndRemoveUntil(
-                          '/login/',
+                          Loginroute,
                           (route) => false,
                         );
                       },

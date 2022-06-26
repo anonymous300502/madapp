@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/main.dart';
 import 'package:flutter_application_1/views/login_view.dart';
 import 'package:flutter_application_1/views/main_ui.dart';
+import 'package:flutter_application_1/views/verify_email_view.dart';
 
 import '../firebase_options.dart';
 
@@ -21,6 +22,7 @@ class HomePage extends StatelessWidget {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
             final user = FirebaseAuth.instance.currentUser;
+            print(FirebaseAuth.instance.currentUser);
             if (user != null) {
               if (user.emailVerified) {
                 return mainui();

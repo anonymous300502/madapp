@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_application_1/constants/routes.dart';
 
 enum MenuAction { logout }
 
@@ -19,30 +22,40 @@ class _mainuiState extends State<mainui> {
       appBar: AppBar(
         title: const Text('main ui'),
         actions: [
-          PopupMenuButton<MenuAction>(onSelected: (value) async {
-            // await FirebaseAuth.instance.signOut();
-            // Navigator.of(context)
-            //     .pushNamedAndRemoveUntil('/login/', (route) => false);
-            switch (value) {
-              case MenuAction.logout:
-                final shouldlogout = await showlogoutdialog(context);
-                print(shouldlogout);
-                if (shouldlogout == true) {
-                  await FirebaseAuth.instance.signOut();
-                  Navigator.of(context)
-                      .pushNamedAndRemoveUntil('/login/', (route) => false);
-                }
+          PopupMenuButton<MenuAction>(
+            onSelected: (value) async {
+              // await FirebaseAuth.instance.signOut();
+              // Navigator.of(context)
+              //     .pushNamedAndRemoveUntil('/login/', (route) => false);
+              switch (value) {
+                case MenuAction.logout:
+                  final shouldlogout = await showlogoutdialog(context);
+                  print(shouldlogout);
+                  if (shouldlogout) {
+                    await FirebaseAuth.instance.signOut();
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                      Loginroute,
+                      (route) => false,
+                    );
+                  }
 
-                break;
-              default:
-            }
-          }, itemBuilder: (context) {
-            return const [
-              PopupMenuItem<MenuAction>(
-                  value: MenuAction.logout, child: Text('Log Out')),
-            ];
-          })
+                  break;
+                default:
+              }
+            },
+            itemBuilder: (context) {
+              return const [
+                PopupMenuItem<MenuAction>(
+                  value: MenuAction.logout,
+                  child: Text('Log Out'),
+                ),
+              ];
+            },
+          ),
         ],
+      ),
+      body: Column(
+        children: [const Text("HELLO")],
       ),
     );
   }
